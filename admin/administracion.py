@@ -1,5 +1,9 @@
+import os
+
+
 class Administracion:
     def administracionAsientos(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("Administracion de asientos: ")
         print(self.SeatsAvailable)
         print(self.SeatsReserved)
@@ -13,6 +17,7 @@ class Administracion:
         except KeyError:
             print("Asiento no disponible, seleccione otro: ", seat)
     def cancelarReservacion(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("Cancelar reservacion: ")
         print(self.SeatsReserved)
         seat = input("Seleccione un asiento: ")
