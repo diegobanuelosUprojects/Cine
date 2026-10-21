@@ -45,7 +45,7 @@ def iniciar_interfaz():
             print("3. Cancelar reservación")
             print("4. Porcentaje de asientos disponibles")
             print("5. Porcentaje de asientos reservados")
-            print("6. Administrar tarifas y asientos preferentes (PB-7)")
+            print("6. Administrar tarifas y asientos preferentes")
             print("7. Cerrar Sesión")
             print("8. Salir")
         print("-" * 45)

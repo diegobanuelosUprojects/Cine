@@ -6,9 +6,7 @@ class Reportes:
         total_asientos = len(self.SeatsAvailable)
         asientos_disponibles = len([seat for seat, available in self.SeatsAvailable.items() if available is True])
         porcentaje_disponibles = (asientos_disponibles / total_asientos) * 100 if total_asientos > 0 else 0
-        print("=" * 50)
         print(" " * 12 + "REPORTE DE DISPONIBILIDAD")
-        print("=" * 50)
         print(f"Total de asientos:        {total_asientos}")
         print(f"Asientos disponibles:     {asientos_disponibles}")
         print(f"Porcentaje disponibles:   \033[32m{round(porcentaje_disponibles, 2)}%\033[0m")
