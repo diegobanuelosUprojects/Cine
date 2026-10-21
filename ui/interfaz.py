@@ -36,6 +36,13 @@ def iniciar_interfaz():
     cine = Cine()
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
+        print(" " * 14 + "ASIENTOS DISPONIBLES")
+        print(f"{'Asiento':<10} {'Tipo':<15} {'Estado':<12}")
+        for seat, available in cine.SeatsAvailable.items():
+            tipo = cine.obtenerTipoAsiento(seat)
+            estado = "Disponible" if available else "No disponible"
+            print(f"{seat:<10} {tipo:<15} {estado:<12}")
+        print("-" * 55)
         print("1. Reservar asientos")
         print("2. Mi reservación")
         if cine.session is False:
