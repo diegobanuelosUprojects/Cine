@@ -2,6 +2,7 @@ from reservas.reservas import Reservas
 from admin.administracion import Administracion
 from reportes.reportes import Reportes
 from auth.autenticacion import Autenticacion
+from ui.interfaz_SS import cancelar_reservacion_sin_sesion
 import os
 
 class Cine(Reservas, Administracion, Reportes, Autenticacion):
@@ -46,8 +47,9 @@ def iniciar_interfaz():
         print("1. Reservar asientos")
         print("2. Mi reservación")
         if cine.session is False:
-            print("3. Iniciar Sesión (Admin)")
-            print("4. Salir")
+            print("3. Cancelar reservación")
+            print("4. Iniciar Sesión (Admin)")
+            print("5. Salir")
         else:
             print("3. Cancelar reservación")
             print("4. Porcentaje de asientos disponibles")
@@ -64,8 +66,10 @@ def iniciar_interfaz():
             cine.miReservacion()
         elif cine.session is False:
             if option == "3":
+                cancelar_reservacion_sin_sesion(cine)
+            elif option == "4":
                 cine.iniciarSesion()
-            elif option in ("4", "salir", "Salir"):
+            elif option in ("5", "salir", "Salir"):
                 break
         else:
             if option == "3":
