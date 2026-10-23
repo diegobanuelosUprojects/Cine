@@ -16,6 +16,11 @@ class Reservas:
         return total
 
     def reservarAsientos(self):
+        if not any(self.SeatsAvailable.values()):
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("\n¡Lo sentimos! La sala está llena. No hay asientos disponibles.")
+            input("\nPresiona enter para volver al menú...")
+            return
         while True:
             os.system('cls' if os.name == 'nt' else 'clear')
             print(" " * 20 + "RESERVAR ASIENTOS")
