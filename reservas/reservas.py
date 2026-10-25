@@ -15,15 +15,27 @@ class Reservas:
                 total += self.obtenerPrecioAsiento(seat)
         return total
 
+    def mostrarPorcentajesAsientos(self):
+        total = len(self.SeatsAvailable)
+        disponibles = sum(1 for disponible in self.SeatsAvailable.values() if disponible)
+        ocupados = total - disponibles
+        porcentaje_disponibles = disponibles / total * 100 if total else 0
+        porcentaje_ocupados = ocupados / total * 100 if total else 0
+        print(f"Asientos ocupados: {ocupados}/{total} ({porcentaje_ocupados:.2f}%)")
+        print(f"Asientos disponibles: {disponibles}/{total} ({porcentaje_disponibles:.2f}%)")
+
     def reservarAsientos(self):
         if not any(self.SeatsAvailable.values()):
             os.system('cls' if os.name == 'nt' else 'clear')
+            self.mostrarPorcentajesAsientos()
             print("\n¡Lo sentimos! La sala está llena. No hay asientos disponibles.")
             input("\nPresiona enter para volver al menú...")
             return
         while True:
             os.system('cls' if os.name == 'nt' else 'clear')
             print(" " * 20 + "RESERVAR ASIENTOS")
+            self.mostrarPorcentajesAsientos()
+            print("-" * 60)
             print(f"  • \033[33mPreferente\033[0m: ${self.Tarifas.get('Preferente', 0.0):.2f} (Filas premium / mejor visibilidad)")
             print(f"  • \033[36mEstándar\033[0m:   ${self.Tarifas.get('Estándar', 0.0):.2f}")
             print(f"{"Asiento":<10} {"Tipo":<15} {"Precio":<12} {"Estado":<12}")
@@ -73,6 +85,7 @@ class Reservas:
             print(f"Tarifa del asiento:   ${precio:.2f}")
             print("-" * 50)
             print(f"\033[32mPRECIO TOTAL ACUMULADO: ${total:.2f}\033[0m")
+            self.mostrarPorcentajesAsientos()
 
             seguir = input("\n¿Desea reservar otro asiento? (s/n): ").strip().lower()
             if seguir not in ("s", "si", "sí"):
