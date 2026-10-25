@@ -27,8 +27,7 @@ class Reservas:
     def reservarAsientos(self):
         if not any(self.SeatsAvailable.values()):
             os.system('cls' if os.name == 'nt' else 'clear')
-            self.mostrarPorcentajesAsientos()
-            print("\n¡Lo sentimos! La sala está llena. No hay asientos disponibles.")
+            print("\nLa sala está llena. Ya no se pueden reservar asientos.")
             input("\nPresiona enter para volver al menú...")
             return
         while True:
@@ -73,6 +72,12 @@ class Reservas:
             # Reservar asiento
             self.SeatsAvailable[seat] = False
             self.SeatsReserved[seat] = True
+
+            if not any(self.SeatsAvailable.values()):
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print("\nLa sala está llena. Ya no se pueden reservar asientos.")
+                input("\nPresiona enter para volver al menú...")
+                return
 
             tipo = self.obtenerTipoAsiento(seat)
             precio = self.obtenerPrecioAsiento(seat)
